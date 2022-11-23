@@ -4,7 +4,6 @@ The ``data_tools.plotting`` module provides some useful plotting functions used 
 
 import pandas as pd
 import numpy as np
-import scipy as sp
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
