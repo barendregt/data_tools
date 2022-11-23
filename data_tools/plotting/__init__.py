@@ -148,13 +148,13 @@ def catplot(
     )
 
     plt.tick_params(
-        axis="both",  # changes apply to the x-axis
+        axis="both",  # changes apply to both axes
         which="both",  # both major and minor ticks are affected
         bottom=False,  # ticks along the bottom edge are off
         top=False,  # ticks along the top edge are off
         left=False,
         labelbottom=True,
-    )  # labels along the bottom edge are off
+    )
 
     for _axii, _fax in enumerate(f.axes.flatten()):
 
@@ -164,9 +164,8 @@ def catplot(
                 _x = p.get_x() + (p.get_width() / 2)
                 # _fax.text(_x, _h + 0, unit_fmt.format(_h), horizontalalignment='center', verticalalignment='bottom', color=, fontsize=);
                 _fax.annotate(
-                    unit_fmt.format(_h),
-                    _x,
-                    _h,
+                    text=unit_fmt.format(_h),
+                    xy=(_x, _h),
                     horizontalalignment="center",
                     verticalalignment="bottom",
                     color=ML_PLOT_COLORS[color_theme]["text"],
@@ -184,9 +183,9 @@ def catplot(
                 # Loop over points in line
                 for _x, _y in zip(lineXs, lineYs):
                     _fax.text(
-                        _x,
-                        _y,
-                        unit_fmt.format(_y),
+                        x=_x,
+                        y=_y,
+                        s=unit_fmt.format(_y),
                         horizontalalignment="center",
                         verticalalignment="bottom",
                         color=ML_PLOT_COLORS[color_theme]["text"],
