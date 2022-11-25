@@ -162,7 +162,9 @@ def catplot(
         if (kind == "bar") & (unit_fmt is not None):
             for _barii, p in enumerate(_fax.patches):
 
-                if (unit_data is None) | (len(unit_data) != len(_fax.patches)):
+                if unit_data is None:
+                    _h = p.get_height()
+                elif len(unit_data) != len(_fax.patches):
                     _h = p.get_height()
                 else:
                     _h = unit_data[_barii]
@@ -189,7 +191,9 @@ def catplot(
                 # Loop over points in line
                 for _x, _y in zip(lineXs, lineYs):
 
-                    if (unit_data is None) | (len(unit_data) != len(lineYs)):
+                    if unit_data is None:
+                        _h = _y
+                    elif len(unit_data) != len(lineYs):
                         _h = _y
                     else:
                         _h = unit_data[_barii]
