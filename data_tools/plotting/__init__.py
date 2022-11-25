@@ -332,6 +332,30 @@ def distplot(
         return f
 
 
+def pieplot(data, labels, explode=[0, 0, 0], title=None, return_handle=False):
+
+    # # declaring data
+    # data = df['Wat voor soort huurcontract heeft u? \xa0'].value_counts().values
+    # keys = ['Vast', 'Tijdelijk', 'Geen']
+
+    # # declaring exploding pie
+    # explode =
+    # define Seaborn color palette to use
+    # palette_color = seaborn.color_palette('light')
+
+    # plotting data on chart
+    f = plt.pie(data, labels=labels, explode=explode, autopct="%.0f%%")
+
+    if title is not None:
+        plt.title(title)
+
+    # displaying chart
+    plt.show()
+
+    if return_handle:
+        return f
+
+
 def mplot_reg_results(
     predictions,
     true_values,
