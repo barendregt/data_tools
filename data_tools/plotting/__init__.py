@@ -79,6 +79,7 @@ def catplot(
     title=None,
     rotate_x_ticks=False,
     unit_fmt=None,
+    unit_data=None,
     color_theme=ML_PLOT_GLOBAL_THEME,
     xlabel="",
     ylabel="",
@@ -159,8 +160,13 @@ def catplot(
     for _axii, _fax in enumerate(f.axes.flatten()):
 
         if (kind == "bar") & (unit_fmt is not None):
-            for p in _fax.patches:
-                _h = p.get_height()
+            for _barii, p in enumerate(_fax.patches):
+
+                if (unit_data is None) | (len(unit_data) != len(_fax.patches)):
+                    _h = p.get_height()
+                else:
+                    _h = unit_data[_barii]
+
                 _x = p.get_x() + (p.get_width() / 2)
                 # _fax.text(_x, _h + 0, unit_fmt.format(_h), horizontalalignment='center', verticalalignment='bottom', color=, fontsize=);
                 _fax.annotate(
