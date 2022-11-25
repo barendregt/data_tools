@@ -173,7 +173,7 @@ def catplot(
                 _x = p.get_x() + (p.get_width() / 2)
                 # _fax.text(_x, _h + 0, unit_fmt.format(_h), horizontalalignment='center', verticalalignment='bottom', color=, fontsize=);
                 _fax.annotate(
-                    s=unit_fmt.format(_h),
+                    text=unit_fmt.format(_h),
                     xy=(_x, _h),
                     horizontalalignment="center",
                     verticalalignment="bottom",
