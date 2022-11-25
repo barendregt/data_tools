@@ -188,10 +188,16 @@ def catplot(
 
                 # Loop over points in line
                 for _x, _y in zip(lineXs, lineYs):
+
+                    if (unit_data is None) | (len(unit_data) != len(lineYs)):
+                        _h = _y
+                    else:
+                        _h = unit_data[_barii]
+
                     _fax.text(
                         x=_x,
                         y=_y,
-                        s=unit_fmt.format(_y),
+                        s=unit_fmt.format(_h),
                         horizontalalignment="center",
                         verticalalignment="bottom",
                         color=ML_PLOT_COLORS[color_theme]["text"],
