@@ -90,6 +90,7 @@ def catplot(
     legend_custom_txt=None,
     legend_location="upper right",
     legend_outside=False,
+    return_handle=False,
     **kwargs
 ):
 
@@ -231,7 +232,8 @@ def catplot(
     # Set background color
     f.fig.patch.set_facecolor(ML_PLOT_COLORS[color_theme]["background"])
 
-    return f
+    if return_handle:
+        return f
 
 
 def distplot(
@@ -249,6 +251,7 @@ def distplot(
     legend=False,
     legend_location="upper right",
     dist_args={},
+    return_handle=False,
     **kwargs
 ):
 
@@ -325,7 +328,8 @@ def distplot(
     # Set background color
     f.fig.patch.set_facecolor(ML_PLOT_COLORS[color_theme]["background"])
 
-    return f
+    if return_handle:
+        return f
 
 
 def mplot_reg_results(
