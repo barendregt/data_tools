@@ -77,6 +77,7 @@ def catplot(
     hue=None,
     kind="bar",
     title=None,
+    orient=None,
     rotate_x_ticks=False,
     unit_fmt=None,
     unit_data=None,
@@ -94,7 +95,9 @@ def catplot(
     **kwargs
 ):
 
-    f = sns.catplot(data=data, x=x, y=y, hue=hue, kind=kind, legend=False, **kwargs)
+    f = sns.catplot(
+        data=data, x=x, y=y, hue=hue, kind=kind, legend=False, orient=orient, **kwargs
+    )
 
     if rotate_x_ticks:
         plt.xticks(rotation=45, horizontalalignment="right")
@@ -171,7 +174,13 @@ def catplot(
                     _h = unit_data[_barii]
 
                 _x = p.get_x() + (p.get_width() / 2)
-                # _fax.text(_x, _h + 0, unit_fmt.format(_h), horizontalalignment='center', verticalalignment='bottom', color=, fontsize=);
+
+                # Flip x & y for horizontal plot
+                if orient == "h":
+                    _temp = _x
+                    _x = _h
+                    _h = _temp
+
                 _fax.annotate(
                     s=unit_fmt.format(_h),
                     xy=(_x, _h),
