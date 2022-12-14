@@ -163,7 +163,7 @@ def catplot(
 
     for _axii, _fax in enumerate(f.axes.flatten()):
 
-        if (kind == "bar") & (unit_fmt is not None):
+        if (kind == "bar") & ((unit_fmt is not None) & (orient != "h")):
             for _barii, p in enumerate(_fax.patches):
 
                 if unit_data is None:
@@ -174,12 +174,6 @@ def catplot(
                     _h = unit_data[_barii]
 
                 _x = p.get_x() + (p.get_width() / 2)
-
-                # Flip x & y for horizontal plot
-                if orient == "h":
-                    _temp = _x
-                    _x = _h
-                    _h = _temp
 
                 _fax.annotate(
                     s=unit_fmt.format(_h),
