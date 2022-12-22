@@ -175,7 +175,7 @@ def catplot(
 
                 if unit_data is not None:
                     if len(unit_data) == len(_fax.patches):
-                        _h = unit_data[_barii]
+                        _h = unit_data[_h]
 
                 if orient == "h":
                     hor_align = "left"
