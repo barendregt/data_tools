@@ -94,6 +94,11 @@ def catplot(
     return_handle=False,
     **kwargs
 ):
+    def __compute_coords(_p, orient=None):
+        if orient == "h":
+            return (p.get_width(), p.get_y() + (p.get_height() / 2), p.get_width())
+        else:
+            return (p.get_x() + (p.get_width() / 2), p.get_height(), p.get_height())
 
     f = sns.catplot(
         data=data, x=x, y=y, hue=hue, kind=kind, legend=False, orient=orient, **kwargs
@@ -163,23 +168,27 @@ def catplot(
 
     for _axii, _fax in enumerate(f.axes.flatten()):
 
-        if (kind == "bar") & ((unit_fmt is not None) & (orient != "h")):
+        if (kind == "bar") & (unit_fmt is not None):
             for _barii, p in enumerate(_fax.patches):
 
-                if unit_data is None:
-                    _h = p.get_height()
-                elif len(unit_data) != len(_fax.patches):
-                    _h = p.get_height()
-                else:
-                    _h = unit_data[_barii]
+                _x, _y, _h = __compute_coords(p, orient=orient)
 
-                _x = p.get_x() + (p.get_width() / 2)
+                if unit_data is not None:
+                    if len(unit_data) == len(_fax.patches):
+                        _h = unit_data[_barii]
+
+                if orient == "h":
+                    hor_align = ("left",)
+                    ver_align = "center"
+                else:
+                    hor_align = "center"
+                    ver_align = "bottom"
 
                 _fax.annotate(
                     s=unit_fmt.format(_h),
-                    xy=(_x, _h),
-                    horizontalalignment="center",
-                    verticalalignment="bottom",
+                    xy=(_x, _y),
+                    horizontalalignment=hor_align,
+                    verticalalignment=ver_align,
                     color=ML_PLOT_COLORS[color_theme]["text"],
                     weight="bold",
                     fontsize=ML_PLOT_FONTS["text"],
