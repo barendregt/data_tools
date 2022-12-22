@@ -178,7 +178,7 @@ def catplot(
                         _h = unit_data[_barii]
 
                 if orient == "h":
-                    hor_align = ("left",)
+                    hor_align = "left"
                     ver_align = "center"
                 else:
                     hor_align = "center"
